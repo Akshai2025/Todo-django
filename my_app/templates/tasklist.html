@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+{% block content%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<h3 class="text-center margin-top 150px my-4">Welcome {{request.user}}! Every great accomplishment begins with a simple task. Step into today with purpose, tackle each challenge with confidence, and turn your goals into reality. Let’s make it happen! </h3>
+<table class="table w-50 mx-auto mt-5">
+  {% for i in items %}
+
+   <tr class="mt-2">
+     {% if i.completed_status %}
+      
+
+
+       <td><a href="{% url 'detail' i.id%}" class="p-3 text-decoration-none text-dark text-decoration-line-through">{{i.taskname}}</a></td>
+
+     {% else %}
+
+       <td><a href="" class="p-3 text-decoration-none text-dark ">{{i.taskname}}</a></td>
+
+     {% endif %}
+     <td><a href="" class="text-decoration-none text-muted">{{i.due_date}}</a></td>
+
+     <td><a href="{% url 'update' i.id%}" class="text-decoration-none"><i class="fa-sharp fa-solid fa-pen"></i></a></td>
+
+    
+
+     {% if i.completed_status%}
+
+        <td>Done</td>
+
+     {% else %}
+
+        <td><a href="{% url 'taskedit' i.id%}">Mark as done</a></td>
+
+      {% endif %}
+     
+   </tr>
+  {% endfor %}
+
+
+{% endblock %}
+</table>

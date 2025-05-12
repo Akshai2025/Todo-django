@@ -235,8 +235,10 @@ class OtpVerifyView(View):
 
             item=Otpmodel.objects.get(otp=otp)
 
-            user_id=item.user_id
+            user_id=item.user_id.id
+
             user=User.objects.get(id=user_id)
+
             username= user.username
 
 
@@ -269,7 +271,7 @@ class ResetpasswordView(View):
 
                 item=request.session.get('user')
 
-                user=User.objects.get(id=item.user_name)
+                user=User.objects.get(username=item)
 
                 user.set_password(password)
 
